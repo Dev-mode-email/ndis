@@ -43,6 +43,9 @@ let basename: string | undefined = baseUrl === '/' ? undefined : (baseUrl.endsWi
 // Debug logging
 console.log('[Router] BASE_URL:', baseUrl, 'basename:', basename, 'current path:', window.location.pathname)
 
+// Create router with basename
+// React Router v6 automatically strips basename from location.pathname before matching routes
+// So if basename is '/ndis' and location is '/ndis/auth/login', router will match '/auth/login'
 export const router = createBrowserRouter([
     {
         path: '/',
