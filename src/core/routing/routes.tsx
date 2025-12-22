@@ -30,7 +30,9 @@ const TransactionDetailsPage = () => <div className="p-6">Transaction Details</d
 const ForgotPasswordPage = () => <div className="p-6">Forgot Password</div>
 const ResetPasswordPage = () => <div className="p-6">Reset Password</div>
 
-const basename = import.meta.env.BASE_URL || '/'
+// Remove trailing slash for basename (createBrowserRouter expects it without trailing slash)
+const baseUrl = import.meta.env.BASE_URL || '/'
+const basename = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
 
 export const router = createBrowserRouter([
     {

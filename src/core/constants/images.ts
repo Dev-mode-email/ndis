@@ -1,8 +1,4 @@
-const getPublicUrl = (path: string): string => {
-  const base = import.meta.env.BASE_URL || '/'
-  const cleanPath = path.startsWith('/') ? path.slice(1) : path
-  return `${base}${cleanPath}`
-}
+import { getPublicUrl } from '@/core/lib/utils'
 
 export const IMAGE_MAPPING: Record<string, string> = {
     'park': getPublicUrl('park.png'),
