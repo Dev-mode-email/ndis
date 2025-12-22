@@ -6,8 +6,14 @@ export const NotFoundPage = () => {
     const navigate = useNavigate()
     
     const handleGoHome = () => {
-        // Use relative path to ensure basename is applied
-        navigate(ROUTES.AUTH.LOGIN, { replace: true })
+        // Get base path from environment or current location
+        const basePath = import.meta.env.BASE_URL || '/'
+        const loginPath = basePath === '/' 
+            ? ROUTES.AUTH.LOGIN 
+            : basePath + ROUTES.AUTH.LOGIN.slice(1) // Remove leading slash and add base path
+        
+        // Use window.location to ensure correct path with base
+        window.location.href = loginPath
     }
     
     return (
