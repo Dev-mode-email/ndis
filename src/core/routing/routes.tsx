@@ -30,14 +30,17 @@ const TransactionDetailsPage = () => <div className="p-6">Transaction Details</d
 const ForgotPasswordPage = () => <div className="p-6">Forgot Password</div>
 const ResetPasswordPage = () => <div className="p-6">Reset Password</div>
 
-// Remove trailing slash for basename (createBrowserRouter expects it without trailing slash)
+// Get base URL from Vite's BASE_URL (automatically set from vite.config.js base option)
+// Vite sets BASE_URL from the 'base' config option
 const baseUrl = import.meta.env.BASE_URL || '/'
+
+// Remove trailing slash for basename (createBrowserRouter expects it without trailing slash)
+// If baseUrl is '/', basename should be undefined (no base path)
+// Otherwise, remove trailing slash if present
 const basename = baseUrl === '/' ? undefined : (baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl)
 
-// Debug: log basename to console
-if (import.meta.env.DEV) {
-    console.log('Router basename:', basename, 'BASE_URL:', baseUrl)
-}
+// Debug logging
+console.log('[Router] BASE_URL:', baseUrl, 'basename:', basename, 'current path:', window.location.pathname)
 
 export const router = createBrowserRouter([
     {
