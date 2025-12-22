@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '@/core/constants/routes'
+import { getPublicUrl } from '@/core/lib/utils'
 
 interface LogoProps {
   className?: string
@@ -22,7 +23,7 @@ export const Logo = ({ className = 'h-12', onClick, clickable = true }: LogoProp
 
   return (
     <img 
-      src="/logo_pay_connex.png" 
+      src={getPublicUrl('logo_pay_connex.png')} 
       alt="PAY CONNEX" 
       className={`${className} ${clickable ? 'cursor-pointer' : ''}`}
       onClick={handleClick}

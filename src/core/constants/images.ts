@@ -1,6 +1,12 @@
+const getPublicUrl = (path: string): string => {
+  const base = import.meta.env.BASE_URL || '/'
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path
+  return `${base}${cleanPath}`
+}
+
 export const IMAGE_MAPPING: Record<string, string> = {
-    'park': '/park.png',
-    'bus': '/bus.png'
+    'park': getPublicUrl('park.png'),
+    'bus': getPublicUrl('bus.png')
 }
 
 export const IMAGE_GROUP_TABS: { value: string; label: string }[] = [

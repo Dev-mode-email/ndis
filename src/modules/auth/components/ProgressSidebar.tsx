@@ -32,7 +32,7 @@ export const ProgressSidebar = ({ currentStep }: ProgressSidebarProps) => {
     <div className="hidden lg:flex flex-col w-[220px] bg-[#F8F9FA] min-h-screen">
       {/* Logo */}
       <div className="px-4 pt-4 pb-2">
-        <img src="/logo.svg" alt="PAY CONNEX" className="h-6" />
+        <img src={`${import.meta.env.BASE_URL || '/'}logo.svg`} alt="PAY CONNEX" className="h-6" />
       </div>
 
       {/* Title and Progress */}

@@ -72,7 +72,7 @@ export const RegisterPage = () => {
       {/* Right Column - Promotional Image */}
       <div 
         className="hidden lg:flex flex-1 relative bg-cover bg-center justify-center items-center"
-        style={{ backgroundImage: 'url(/image.png)' }}
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL || '/'}image.png)` }}
       >
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 flex flex-col items-center text-white px-12">
