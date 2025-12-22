@@ -27,9 +27,14 @@
           var decoded = l.search.slice(1).split('&').map(function(s) { 
             return s.replace(/~and~/g, '&')
           }).join('?');
+          // Remove leading slash from decoded path if present
+          var cleanPath = decoded.replace(/^\//, '');
           // Get base path from current location (e.g., '/ndis/')
-          var basePath = l.pathname.split('/').slice(0, 2).join('/') + '/';
-          var newPath = basePath + decoded.replace(/^\//, '');
+          var pathParts = l.pathname.split('/').filter(function(p) { return p; });
+          var basePath = pathParts.length > 0 && pathParts[0] === 'ndis' 
+            ? '/ndis/' 
+            : '/';
+          var newPath = basePath + cleanPath;
           window.history.replaceState(null, null, newPath + l.hash);
         }
       }(window.location))
