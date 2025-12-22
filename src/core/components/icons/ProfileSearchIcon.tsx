@@ -1,0 +1,44 @@
+type IconProps = {
+  className?: string
+}
+
+export const ProfileSearchIcon = ({ className }: IconProps) => (
+  <svg
+    className={className}
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M12.1586 10.87C12.0586 10.86 11.9386 10.86 11.8286 10.87C9.44863 10.79 7.55863 8.84 7.55863 6.44C7.54863 3.99 9.53863 2 11.9886 2C14.4386 2 16.4286 3.99 16.4286 6.44C16.4286 8.84 14.5286 10.79 12.1586 10.87Z"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M11.9891 21.8099C10.1691 21.8099 8.35906 21.3499 6.97906 20.4299C4.55906 18.8099 4.55906 16.1699 6.97906 14.5599C9.72906 12.7199 14.2391 12.7199 16.9891 14.5599"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M17.2851 21.5709C16.0211 21.5709 14.9999 20.5497 14.9999 19.2857C14.9999 18.0217 16.0211 17.0005 17.2851 17.0005C18.5491 17.0005 19.5703 18.0217 19.5703 19.2857C19.5703 20.5497 18.5491 21.5709 17.2851 21.5709Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M20 21.9995L19.2859 21.2854"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+)
+
