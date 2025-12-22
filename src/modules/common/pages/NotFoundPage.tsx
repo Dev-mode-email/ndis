@@ -6,7 +6,8 @@ export const NotFoundPage = () => {
     const navigate = useNavigate()
     
     const handleGoHome = () => {
-        navigate(ROUTES.DASHBOARD.HOME)
+        // Use relative path to ensure basename is applied
+        navigate(ROUTES.AUTH.LOGIN, { replace: true })
     }
     
     return (
