@@ -35,7 +35,7 @@ jobs:
       - name: Build
         run: yarn build
         env:
-          GITHUB_PAGES_BASE: '/'
+          GITHUB_PAGES_BASE: '/ndis/'
           VITE_API_URL: ${{ secrets.VITE_API_URL || 'https://bacend-pol-production.up.railway.app' }}
           VITE_API_SWAGGER: ${{ secrets.VITE_API_SWAGGER || 'https://bacend-pol-production.up.railway.app/api' }}
 
