@@ -14,16 +14,24 @@
       // Note: this 404.html file must be at least 512 bytes for it to work
       // with Internet Explorer (it is currently > 512 bytes)
 
-      // If you're creating a Project Pages site and NOT using a custom domain,
-      // then set segmentCount to 1 (enterprise users may need to set it to > 1).
-      // This way the code will only replace the route part and not the real directory.
-      // For example, if your app is at https://username.github.io/repo-name/,
-      // and the URL is https://username.github.io/repo-name/one/two?param=value#hash,
-      // then segmentCount should be 1 so that the route becomes /one/two?param=value#hash
-      // and not /repo-name/one/two?param=value#hash.
+      // For Project Pages: repo-name is 'ndis'
+      // segmentCount = 1 means we keep '/ndis' as base path
       var segmentCount = 1;
+      var repoName = 'ndis';
 
       var l = window.location;
+      var pathParts = l.pathname.split('/').filter(function(p) { return p; });
+      
+      // If path doesn't start with repo name, redirect to /ndis/ with the path
+      if (pathParts[0] !== repoName) {
+        var redirectPath = '/' + repoName + '/' + (pathParts.length > 0 ? pathParts.join('/') : '');
+        if (l.search) redirectPath += l.search;
+        if (l.hash) redirectPath += l.hash;
+        l.replace(l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + redirectPath);
+        return;
+      }
+      
+      // Normal SPA redirect for paths under /ndis/
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
         l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?/' +
