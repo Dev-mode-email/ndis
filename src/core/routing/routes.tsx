@@ -32,12 +32,12 @@ const ResetPasswordPage = () => <div className="p-6">Reset Password</div>
 
 // Remove trailing slash for basename (createBrowserRouter expects it without trailing slash)
 const baseUrl = import.meta.env.BASE_URL || '/'
-const basename = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl
+const basename = baseUrl === '/' ? '/' : (baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl)
 
 export const router = createBrowserRouter([
     {
         path: '/',
-        basename: basename,
+        basename: basename === '/' ? undefined : basename,
         errorElement: <NotFoundPage />,
         children: [
             {
