@@ -42,7 +42,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Navigate to={ROUTES.DASHBOARD.HOME} replace />,
+                element: <Navigate to={ROUTES.AUTH.LOGIN} replace />,
             },
             // Auth routes (public)
             {
