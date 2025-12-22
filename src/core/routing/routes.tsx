@@ -30,9 +30,12 @@ const TransactionDetailsPage = () => <div className="p-6">Transaction Details</d
 const ForgotPasswordPage = () => <div className="p-6">Forgot Password</div>
 const ResetPasswordPage = () => <div className="p-6">Reset Password</div>
 
+const basename = import.meta.env.BASE_URL || '/'
+
 export const router = createBrowserRouter([
     {
         path: '/',
+        basename: basename,
         errorElement: <NotFoundPage />,
         children: [
             {
