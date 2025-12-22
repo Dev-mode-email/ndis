@@ -46,135 +46,140 @@ console.log('[Router] BASE_URL:', baseUrl, 'basename:', basename, 'current path:
 // Create router with basename
 // React Router v6 automatically strips basename from location.pathname before matching routes
 // So if basename is '/ndis' and location is '/ndis/auth/login', router will match '/auth/login'
-export const router = createBrowserRouter([
+// IMPORTANT: basename must be set on the root route, not on children
+export const router = createBrowserRouter(
+    [
+        {
+            path: '/',
+            errorElement: <NotFoundPage />,
+            children: [
+                {
+                    index: true,
+                    element: <Navigate to={ROUTES.AUTH.LOGIN} replace />,
+                },
+                // Auth routes (public)
+                {
+                    path: 'auth',
+                    children: [
+                        {
+                            path: 'login',
+                            element: <LoginPage />,
+                        },
+                        {
+                            path: 'register',
+                            element: <RegisterPage />,
+                        },
+                        {
+                            path: 'forgot-password',
+                            element: <ForgotPasswordPage />,
+                        },
+                        {
+                            path: 'reset-password',
+                            element: <ResetPasswordPage />,
+                        },
+                    ],
+                },
+                // Onboarding route (protected, but without AdminLayout)
+                {
+                    element: (
+                        <ProtectedRoute>
+                            <OnboardingGuard>
+                                <OnboardingPage />
+                            </OnboardingGuard>
+                        </ProtectedRoute>
+                    ),
+                    path: 'onboarding',
+                },
+                // Protected routes - AdminLayout
+                {
+                    element: <AdminLayout />,
+                    children: [
+                        {
+                            element: <ProtectedRoute />,
+                            children: [
+                                // Dashboard
+                                {
+                                    path: 'dashboard',
+                                    element: (
+                                        <DashboardGuard>
+                                            <DashboardPage />
+                                        </DashboardGuard>
+                                    ),
+                                },
+                                // Users
+                                {
+                                    path: 'users',
+                                    children: [
+                                        {
+                                            index: true,
+                                            element: <UsersPage />,
+                                        },
+                                        {
+                                            path: ':id',
+                                            element: <UserDetailsPage />,
+                                        },
+                                    ],
+                                },
+                                // Wallets
+                                {
+                                    path: 'wallets',
+                                    children: [
+                                        {
+                                            index: true,
+                                            element: <WalletsPage />,
+                                        },
+                                        {
+                                            path: ':id',
+                                            element: <WalletDetailsPage />,
+                                        },
+                                    ],
+                                },
+                                // Transactions
+                                {
+                                    path: 'transactions',
+                                    children: [
+                                        {
+                                            index: true,
+                                            element: <TransactionsPage />,
+                                        },
+                                        {
+                                            path: ':id',
+                                            element: <TransactionDetailsPage />,
+                                        },
+                                    ],
+                                },
+                                // Payments
+                                {
+                                    path: 'payments',
+                                    children: [
+                                        {
+                                            path: 'new',
+                                            element: <NewPaymentPage />,
+                                        },
+                                        {
+                                            path: 'add-cash',
+                                            element: <AddCashPage />,
+                                        },
+                                    ],
+                                },
+                                // Mood Reports
+                                {
+                                    path: 'mood-reports',
+                                    element: <MoodReportsPage />,
+                                },
+                                // Account
+                                {
+                                    path: 'account',
+                                    element: <AccountPage />,
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
     {
-        path: '/',
         basename: basename,
-        errorElement: <NotFoundPage />,
-        children: [
-            {
-                index: true,
-                element: <Navigate to={ROUTES.AUTH.LOGIN} replace />,
-            },
-            // Auth routes (public)
-            {
-                path: 'auth',
-                children: [
-                    {
-                        path: 'login',
-                        element: <LoginPage />,
-                    },
-                    {
-                        path: 'register',
-                        element: <RegisterPage />,
-                    },
-                    {
-                        path: 'forgot-password',
-                        element: <ForgotPasswordPage />,
-                    },
-                    {
-                        path: 'reset-password',
-                        element: <ResetPasswordPage />,
-                    },
-                ],
-            },
-            // Onboarding route (protected, but without AdminLayout)
-            {
-                element: (
-                    <ProtectedRoute>
-                        <OnboardingGuard>
-                            <OnboardingPage />
-                        </OnboardingGuard>
-                    </ProtectedRoute>
-                ),
-                path: 'onboarding',
-            },
-            // Protected routes - AdminLayout
-            {
-                element: <AdminLayout />,
-                children: [
-                    {
-                        element: <ProtectedRoute />,
-                        children: [
-                            // Dashboard
-                            {
-                                path: 'dashboard',
-                                element: (
-                                    <DashboardGuard>
-                                        <DashboardPage />
-                                    </DashboardGuard>
-                                ),
-                            },
-                            // Users
-                            {
-                                path: 'users',
-                                children: [
-                                    {
-                                        index: true,
-                                        element: <UsersPage />,
-                                    },
-                                    {
-                                        path: ':id',
-                                        element: <UserDetailsPage />,
-                                    },
-                                ],
-                            },
-                            // Wallets
-                            {
-                                path: 'wallets',
-                                children: [
-                                    {
-                                        index: true,
-                                        element: <WalletsPage />,
-                                    },
-                                    {
-                                        path: ':id',
-                                        element: <WalletDetailsPage />,
-                                    },
-                                ],
-                            },
-                            // Transactions
-                            {
-                                path: 'transactions',
-                                children: [
-                                    {
-                                        index: true,
-                                        element: <TransactionsPage />,
-                                    },
-                                    {
-                                        path: ':id',
-                                        element: <TransactionDetailsPage />,
-                                    },
-                                ],
-                            },
-                            // Payments
-                            {
-                                path: 'payments',
-                                children: [
-                                    {
-                                        path: 'new',
-                                        element: <NewPaymentPage />,
-                                    },
-                                    {
-                                        path: 'add-cash',
-                                        element: <AddCashPage />,
-                                    },
-                                ],
-                            },
-                            // Mood Reports
-                            {
-                                path: 'mood-reports',
-                                element: <MoodReportsPage />,
-                            },
-                            // Account
-                            {
-                                path: 'account',
-                                element: <AccountPage />,
-                            },
-                        ],
-                    },
-                ],
-            },
-        ],
-    },
-])
+    }
+)
