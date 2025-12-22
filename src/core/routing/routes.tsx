@@ -37,7 +37,8 @@ const baseUrl = import.meta.env.BASE_URL || '/'
 // Remove trailing slash for basename (createBrowserRouter expects it without trailing slash)
 // If baseUrl is '/', basename should be undefined (no base path)
 // Otherwise, remove trailing slash if present
-const basename = baseUrl === '/' ? undefined : (baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl)
+// React Router v6 expects basename without trailing slash
+let basename: string | undefined = baseUrl === '/' ? undefined : (baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl)
 
 // Debug logging
 console.log('[Router] BASE_URL:', baseUrl, 'basename:', basename, 'current path:', window.location.pathname)
