@@ -1,35 +1,17 @@
 import * as z from 'zod';
 
-/**
- * Common validation schemas for reuse
- */
 export const commonValidations = {
-  /**
-   * Required string field
-   */
   requiredString: (message?: string) => 
     z.string().min(1, message || 'Required'),
   
-  /**
-   * Email validation
-   */
   email: (message?: string) => 
     z.string().email('Invalid email format').min(1, message || 'Required'),
   
-  /**
-   * Password with minimum length
-   */
   password: (minLength: number = 6) => 
     z.string().min(minLength, `Password must be at least ${minLength} characters`),
   
-  /**
-   * Optional string
-   */
   optionalString: () => z.string().optional().default(''),
   
-  /**
-   * File with size limit
-   */
   file: (maxSizeMB: number = 1) => {
     const maxSizeBytes = maxSizeMB * 1024 * 1024;
     return z.custom<File | null>((file) => {
@@ -43,9 +25,6 @@ export const commonValidations = {
     });
   },
   
-  /**
-   * Optional file
-   */
   optionalFile: (maxSizeMB: number = 1) => {
     const maxSizeBytes = maxSizeMB * 1024 * 1024;
     return z.custom<File | null>((file) => {
@@ -58,22 +37,13 @@ export const commonValidations = {
   }
 };
 
-/**
- * Utility for creating form schema with common patterns
- */
 export const createFormSchema = <T extends Record<string, z.ZodTypeAny>>(
   fields: T
 ) => {
   return z.object(fields);
 };
 
-/**
- * Standard error handlers for forms
- */
 export const formErrorHandlers = {
-  /**
-   * Handle API errors
-   */
   handleApiError: (
     error: unknown,
     form: { setError: (field: string | number, error: { message: string }) => void },
@@ -100,9 +70,6 @@ export const formErrorHandlers = {
     });
   },
 
-  /**
-   * Handle file size errors
-   */
   handleFileSizeError: (
     error: unknown,
     form: { setError: (field: string | number, error: { message: string }) => void },
@@ -131,17 +98,11 @@ export const formErrorHandlers = {
   }
 };
 
-/**
- * Standard form configurations
- */
 export const standardFormConfig = {
   mode: 'onChange' as const,
   reValidateMode: 'onChange' as const
 };
 
-/**
- * Default values for different form types
- */
 export const defaultFormValues = {
   auth: {
     login: {
@@ -168,9 +129,6 @@ export const defaultFormValues = {
   }
 };
 
-/**
- * Types for standard forms
- */
 export type LoginFormData = typeof defaultFormValues.auth.login;
 export type RegisterFormData = typeof defaultFormValues.auth.register;
 export type ContactFormData = typeof defaultFormValues.contact;

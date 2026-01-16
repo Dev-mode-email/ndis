@@ -95,9 +95,6 @@ export interface UpdateOnboardingStatusDto {
 }
 
 export const userApi = {
-    /**
-     * Get all users (optionally with pagination)
-     */
     getAll: (params?: GetUsersParams) => {
         const cleanParams: Record<string, string | number> = {}
         if (params) {
@@ -110,81 +107,42 @@ export const userApi = {
         return axiosInstance.get(API_ENDPOINTS.USER.LIST, { params: cleanParams })
     },
 
-    /**
-     * Create a new user
-     */
     create: (data: CreateUserDto) =>
         axiosInstance.post(API_ENDPOINTS.USER.CREATE, data),
 
-    /**
-     * Get user by id
-     */
     getById: (id: string) =>
         axiosInstance.get(API_ENDPOINTS.USER.GET(id)),
 
-    /**
-     * Update user by id
-     */
     update: (id: string, data: UpdateUserDto) =>
         axiosInstance.patch(API_ENDPOINTS.USER.UPDATE(id), data),
 
-    /**
-     * Delete user by id
-     */
     delete: (id: string) =>
         axiosInstance.delete(API_ENDPOINTS.USER.DELETE(id)),
 
-    /**
-     * Update individual address for a user
-     */
     updateIndividualAddress: (id: string, data: UpdateIndividualAddressDto) =>
         axiosInstance.patch(API_ENDPOINTS.USER.UPDATE_INDIVIDUAL_ADDRESS(id), data),
 
-    /**
-     * Update organization address for a user
-     */
     updateOrganizationAddress: (id: string, data: UpdateOrganizationAddressDto) =>
         axiosInstance.patch(API_ENDPOINTS.USER.UPDATE_ORGANIZATION_ADDRESS(id), data),
 
-    /**
-     * Update NDIS details for a user
-     */
     updateNdisDetails: (id: string, data: UpdateNdisDetailsDto) =>
         axiosInstance.patch(API_ENDPOINTS.USER.UPDATE_NDIS_DETAILS(id), data),
 
-    /**
-     * Update service provider details for a user
-     */
     updateServiceProviderDetails: (id: string, data: UpdateServiceProviderDetailsDto) =>
         axiosInstance.patch(API_ENDPOINTS.USER.UPDATE_SERVICE_PROVIDER_DETAILS(id), data),
 
-    /**
-     * Get invitation tree (who invited whom)
-     */
     getInvitationTree: () =>
         axiosInstance.get(API_ENDPOINTS.USER.INVITATIONS_TREE),
 
-    /**
-     * Get all users invited by a specific user
-     */
     getInvitedUsers: (id: string) =>
         axiosInstance.get(API_ENDPOINTS.USER.GET_INVITED_USERS(id)),
 
-    /**
-     * Get invitation tree for a specific user
-     */
     getInvitationTreeForUser: (id: string) =>
         axiosInstance.get(API_ENDPOINTS.USER.GET_INVITATION_TREE(id)),
 
-    /**
-     * Get invitation chain (who invited this user and all ancestors)
-     */
     getInvitationChain: (id: string) =>
         axiosInstance.get(API_ENDPOINTS.USER.GET_INVITATION_CHAIN(id)),
 
-    /**
-     * Update onboarding status for current user
-     */
     updateOnboardingStatus: (data: UpdateOnboardingStatusDto) =>
         axiosInstance.patch(API_ENDPOINTS.USER.UPDATE_ONBOARDING_STATUS, data),
 }

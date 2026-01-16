@@ -10,28 +10,19 @@ import {
 } from '@/core/components/ui/table'
 
 export type DataTableColumn<T> = {
-  /** Unique column key */
   key: string
-  /** Column header */
   header: React.ReactNode
-  /** Class for <th> */
   headerClassName?: string
-  /** Class for <td> */
   cellClassName?: string
-  /** Cell renderer */
   render: (row: T) => React.ReactNode
 }
 
 interface DataTableProps<T> {
   columns: DataTableColumn<T>[]
   data: T[]
-  /** Show spinner/loader instead of table */
   isLoading?: boolean
-  /** Skeleton/placeholder during loading (optional) */
   loadingContent?: React.ReactNode
-  /** Content for empty state */
   emptyContent?: React.ReactNode
-  /** Additional classes for table wrapper */
   className?: string
 }
 

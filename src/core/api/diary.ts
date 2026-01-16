@@ -7,15 +7,9 @@ export interface CreateCustomerDiaryNoteDto {
 }
 
 export const diaryApi = {
-    /**
-     * Get all diary notes
-     */
     getNotes: () =>
         axiosInstance.get(API_ENDPOINTS.DIARY.LIST),
 
-    /**
-     * Create a new diary note
-     */
     createNote: (data: CreateCustomerDiaryNoteDto) =>
         axiosInstance.post(API_ENDPOINTS.DIARY.CREATE, data),
 }

@@ -37,11 +37,7 @@ export interface GetTransactionsParams {
 }
 
 export const transactionsApi = {
-    /**
-     * Get all transactions with pagination
-     */
     getAll: (params?: GetTransactionsParams) => {
-        // Remove undefined values from params
         const cleanParams: Record<string, string | number> = {}
         if (params) {
             Object.entries(params).forEach(([key, value]) => {
@@ -53,33 +49,18 @@ export const transactionsApi = {
         return axiosInstance.get(API_ENDPOINTS.TRANSACTIONS.LIST, { params: cleanParams })
     },
 
-    /**
-     * Create a new transaction
-     */
     create: (data: CreateTransactionDto) =>
         axiosInstance.post(API_ENDPOINTS.TRANSACTIONS.CREATE, data),
 
-    /**
-     * Get transaction by id
-     */
     getById: (id: string) =>
         axiosInstance.get(API_ENDPOINTS.TRANSACTIONS.GET(id)),
 
-    /**
-     * Update transaction
-     */
     update: (id: string, data: UpdateTransactionDto) =>
         axiosInstance.patch(API_ENDPOINTS.TRANSACTIONS.UPDATE(id), data),
 
-    /**
-     * Delete transaction
-     */
     delete: (id: string) =>
         axiosInstance.delete(API_ENDPOINTS.TRANSACTIONS.DELETE(id)),
 
-    /**
-     * Update transaction status
-     */
     updateStatus: (id: string, data: UpdateTransactionStatusDto) =>
         axiosInstance.patch(API_ENDPOINTS.TRANSACTIONS.UPDATE_STATUS(id), data),
 }

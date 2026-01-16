@@ -4,32 +4,18 @@
     <meta charset="utf-8">
     <title>PAY CONNEX</title>
     <script>
-      // Single Page Apps for GitHub Pages
-      // https://github.com/rafgraph/spa-github-pages
-      // This script takes the current url and converts the path and query
-      // string into just a query string, and then redirects the browser
-      // to the new url with only a query string and hash fragment,
-      // e.g., https://www.foo.tld/one/two?a=b&c=d#qwe, becomes
-      // https://www.foo.tld/?/one/two&a=b~and~c=d#qwe
-      // Note: this 404.html file must be at least 512 bytes for it to work
-      // with Internet Explorer (it is currently > 512 bytes)
-
-      // For Project Pages: repo-name is 'ndis'
-      // segmentCount = 1 means we keep '/ndis' as base path
       var segmentCount = 1;
       var repoName = 'ndis';
 
       var l = window.location;
       var pathParts = l.pathname.split('/').filter(function(p) { return p; });
       
-      // If path doesn't start with repo name, redirect to /ndis/ with the path
       if (pathParts[0] !== repoName) {
         var redirectPath = '/' + repoName + '/' + (pathParts.length > 0 ? pathParts.join('/') : '');
         if (l.search) redirectPath += l.search;
         if (l.hash) redirectPath += l.hash;
         l.replace(l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + redirectPath);
       } else {
-        // Normal SPA redirect for paths under /ndis/
         l.replace(
           l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
           l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?/' +

@@ -1,23 +1,14 @@
-/**
- * API Configuration
- */
 export const API_CONFIG = {
     BASE_URL: import.meta.env.VITE_API_URL || 'https://bacend-pol-production.up.railway.app',
     SWAGGER_URL: import.meta.env.VITE_API_SWAGGER || 'https://bacend-pol-production.up.railway.app/api',
 } as const
 
-/**
- * API Endpoints
- * Based on Swagger documentation: https://bacend-pol-production.up.railway.app/api
- */
 export const API_ENDPOINTS = {
-    // Health Check
     HEALTH: {
         CHECK: '/health-check',
         DB: '/health-check/db',
     },
     
-    // Authentication
     AUTH: {
         ME: '/auth/me',
         LOGIN: '/auth/admin/login',
@@ -25,28 +16,23 @@ export const API_ENDPOINTS = {
         REFRESH: '/auth/admin/refresh',
     },
     
-    // User Management
     USER: {
         LIST: '/user',
         CREATE: '/user',
         GET: (id: string) => `/user/${id}`,
         UPDATE: (id: string) => `/user/${id}`,
         DELETE: (id: string) => `/user/${id}`,
-        // User Address
         UPDATE_INDIVIDUAL_ADDRESS: (id: string) => `/user/${id}/address/individual`,
         UPDATE_ORGANIZATION_ADDRESS: (id: string) => `/user/${id}/address/organization`,
-        // User Details
         UPDATE_NDIS_DETAILS: (id: string) => `/user/${id}/ndis-details`,
         UPDATE_SERVICE_PROVIDER_DETAILS: (id: string) => `/user/${id}/service-provider-details`,
         UPDATE_ONBOARDING_STATUS: '/user/onboarding/status',
-        // Invitations
         INVITATIONS_TREE: '/user/invitations/tree',
         GET_INVITED_USERS: (id: string) => `/user/${id}/invited`,
         GET_INVITATION_TREE: (id: string) => `/user/${id}/invitations/tree`,
         GET_INVITATION_CHAIN: (id: string) => `/user/${id}/invitations/chain`,
     },
     
-    // Wallet Management
     WALLET: {
         LIST: '/wallet',
         CREATE: '/wallet',
@@ -57,7 +43,6 @@ export const API_ENDPOINTS = {
         REMOVE_USERS: (id: string) => `/wallet/${id}/users`,
     },
     
-    // Subscription Management
     SUBSCRIPTION: {
         CREATE: '/subscription',
         GET_PLANS: '/subscription-plan',
@@ -66,7 +51,6 @@ export const API_ENDPOINTS = {
         DELETE: (id: string) => `/subscription/${id}`,
     },
     
-    // Card Management
     CARD: {
         ORDER: '/card/order',
         LIST: '/card',
@@ -75,7 +59,6 @@ export const API_ENDPOINTS = {
         DELETE: (id: string) => `/card/${id}`,
     },
     
-    // Transactions Management 
     TRANSACTIONS: {
         LIST: '/transactions',
         CREATE: '/transactions',
@@ -85,7 +68,6 @@ export const API_ENDPOINTS = {
         UPDATE_STATUS: (id: string) => `/transactions/${id}/status`,
     },
     
-    // Categories Management 
     CATEGORIES: {
         LIST: '/categories',
         CREATE: '/categories',
@@ -94,7 +76,6 @@ export const API_ENDPOINTS = {
         DELETE: (id: string) => `/categories/${id}`,
     },
     
-    // Image Management 
     IMAGE: {
         LIST: '/image',
         UPLOAD: '/image',
@@ -104,7 +85,6 @@ export const API_ENDPOINTS = {
         GET_SIGNED_URL: (id: string) => `/image/${id}/url`,
     },
     
-    // Diary Management
     DIARY: {
         LIST: '/diary',
         CREATE: '/diary',

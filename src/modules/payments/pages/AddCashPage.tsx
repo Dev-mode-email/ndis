@@ -31,7 +31,6 @@ export const AddCashPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Implement payment creation logic
     console.log('Form data:', formData)
   }
 

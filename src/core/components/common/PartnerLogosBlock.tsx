@@ -29,8 +29,8 @@ export const PartnerLogosBlock: React.FC<PartnerLogosBlockProps> = ({ logos, isS
         const [naturalSize, setNaturalSize] = React.useState<{ w: number; h: number } | null>(null);
         const isSquare = naturalSize ? Math.abs(naturalSize.w - naturalSize.h) / Math.max(naturalSize.w, naturalSize.h) < 0.1 : false;
 
-        const baseMaxHeight = isSingleLogo ? (isShortText ? 160 : 140) : (isShortText ? 100 : 80); // px
-        const squareMaxHeight = isSingleLogo ? (isShortText ? 144 : 128) : (isShortText ? 90 : 72); // px
+        const baseMaxHeight = isSingleLogo ? (isShortText ? 160 : 140) : (isShortText ? 100 : 80);
+        const squareMaxHeight = isSingleLogo ? (isShortText ? 144 : 128) : (isShortText ? 90 : 72);
         const maxHeight = isSquare ? squareMaxHeight : baseMaxHeight;
 
         return (

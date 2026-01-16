@@ -27,7 +27,6 @@ export const useTransactions = (params?: UseTransactionsParams) => {
         walletId: params?.walletId,
         userId: params?.userId,
       })
-      // API returns object with pagination: { data: Transaction[], total, page, limit }
       const data = response.data
       if (Array.isArray(data)) {
         return data as Transaction[]
@@ -117,20 +116,16 @@ export const useAllTransactions = (params?: { page?: number; limit?: number; sor
         })
         const data = response.data
         
-        // If data is an array, return it
         if (Array.isArray(data)) {
           return data as Transaction[]
         }
         
-        // If data is an object with data field, extract the array
         if (data && typeof data === 'object' && 'data' in data && Array.isArray(data.data)) {
           return data.data as Transaction[]
         }
         
-        // Otherwise return empty array
         return [] as Transaction[]
       } catch (error) {
-        // On error (e.g., 401) return empty array
         return [] as Transaction[]
       }
     },

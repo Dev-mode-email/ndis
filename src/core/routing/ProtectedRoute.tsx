@@ -24,6 +24,5 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
         return <Navigate to={ROUTES.AUTH.LOGIN} state={{ from: location }} replace />
     }
 
-    // If children exist - render them, otherwise render Outlet for nested routes
     return children ? <>{children}</> : <Outlet />
 }

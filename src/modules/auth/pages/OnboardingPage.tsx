@@ -763,22 +763,13 @@ export const OnboardingPage = () => {
   }
 
   const showSidebar = step >= 3 && step <= 7
-  // Convert step for sidebar:
-  // 3 -> 1 (General Company Info - form)
-  // 3.5 -> 2 (General Company Info Success - success screen, step 2 completed)
-  // 4 -> 3 (Select Subscription)
-  // 4.5 -> 3 (Subscription Success - success screen, step 3 completed)
-  // 5 -> 4 (Add Participant)
-  // 5.5 -> 4 (Participant Success - success screen, step 4 completed)
-  // 6 -> 5 (Add Wallet)
-  // 7 -> 6 (Order Card)
   const getSidebarStep = (): number => {
     if (step === 3) return 1
-    if (step === 3.5) return 2 // On success screen show step 2 as completed
+    if (step === 3.5) return 2
     if (step === 4) return 3
-    if (step === 4.5) return 3 // On subscription success screen show step 3 as completed
+    if (step === 4.5) return 3
     if (step === 5) return 4
-    if (step === 5.5) return 4 // On participant success screen show step 4 as completed
+    if (step === 5.5) return 4
     if (step >= 6 && step <= 7) return step - 1
     return 1
   }

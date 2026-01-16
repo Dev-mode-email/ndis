@@ -11,7 +11,6 @@ const isEnabled = (scope?: string): boolean => {
 const log = (level: LogLevel, scope: string, ...args: unknown[]) => {
   if (!isEnabled(scope)) return;
   const prefix = `[${scope}]`;
-  // eslint-disable-next-line no-console
   (console as any)[level]?.(prefix, ...args);
 };
 

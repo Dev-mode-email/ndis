@@ -28,7 +28,6 @@ module.exports = {
   			primary: {
 				DEFAULT: 'hsl(var(--primary))',
 				foreground: 'hsl(var(--primary-foreground))',
-				// Primary color scale from Figma
 				25: '#E8F6FE',
 				50: '#D2EFFF',
 				100: '#A6DEFF',
@@ -57,7 +56,6 @@ module.exports = {
   			destructive: {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))',
-				// Error/Red scale from Figma
 				25: '#FFFBFA',
 				50: '#FEF3F2',
 				100: '#FEE4E2',
@@ -72,7 +70,6 @@ module.exports = {
 				950: '#3D1503'
   			},
 			success: {
-				// Success/Green scale from Figma
 				25: '#F6FEF9',
 				50: '#ECFDF3',
 				100: '#D1FADF',
@@ -86,7 +83,6 @@ module.exports = {
 				900: '#054F31'
 			},
 			gray: {
-				// Gray scale from Figma
 				25: '#FCFCFD',
 				50: '#F9FAFB',
 				100: '#F2F4F7',

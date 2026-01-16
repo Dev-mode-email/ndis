@@ -15,7 +15,6 @@ export const DashboardPage = () => {
   const { data: wallets = [], isLoading: walletsLoading } = useWallets()
   const { data: transactions = [], isLoading: transactionsLoading } = useAllTransactions()
 
-  // Sort wallets by balance for "Top Wallets"
   const topWallets = [...wallets]
     .sort((a, b) => (b.balance || 0) - (a.balance || 0))
     .slice(0, 4)

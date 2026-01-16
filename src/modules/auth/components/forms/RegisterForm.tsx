@@ -62,7 +62,6 @@ export const RegisterForm = ({ onNext, defaultValues }: RegisterFormProps) => {
   const onSubmit = (data: RegisterFormValues) => {
     console.log('Form submitted with data:', data)
     console.log('Form errors:', form.formState.errors)
-    // isValid might be false due to async validation, but if there are no errors - form is valid
     const hasErrors = Object.keys(form.formState.errors).length > 0
     console.log('Form has errors:', hasErrors)
     

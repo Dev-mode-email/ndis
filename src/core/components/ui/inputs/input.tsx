@@ -6,7 +6,6 @@ type InputSize = "sm" | "md" | "lg"
 export interface InputProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
     size?: InputSize
-    // type?: "text" | "textarea" | "email"
 }
 
 const sizeStyles: Record<InputSize, string> = {

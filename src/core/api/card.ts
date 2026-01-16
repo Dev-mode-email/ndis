@@ -27,33 +27,18 @@ export interface UpdateCardDto {
 }
 
 export const cardApi = {
-    /**
-     * Order a new card
-     */
     order: (data: OrderCardDto) =>
         axiosInstance.post(API_ENDPOINTS.CARD.ORDER, data),
 
-    /**
-     * Get all cards
-     */
     getAll: () =>
         axiosInstance.get(API_ENDPOINTS.CARD.LIST),
 
-    /**
-     * Get card by id
-     */
     getById: (id: string) =>
         axiosInstance.get(API_ENDPOINTS.CARD.GET(id)),
 
-    /**
-     * Update card
-     */
     update: (id: string, data: UpdateCardDto) =>
         axiosInstance.patch(API_ENDPOINTS.CARD.UPDATE(id), data),
 
-    /**
-     * Delete card
-     */
     delete: (id: string) =>
         axiosInstance.delete(API_ENDPOINTS.CARD.DELETE(id)),
 }

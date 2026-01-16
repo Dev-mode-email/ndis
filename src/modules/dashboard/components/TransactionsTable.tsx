@@ -46,7 +46,6 @@ export const TransactionsTable = ({
   emptyMessage = 'No Transaction',
   maxItems = 5,
 }: TransactionsTableProps) => {
-  // Protection against non-arrays: if transactions is not an array, use empty array
   const safeTransactions = Array.isArray(transactions) ? transactions : []
   const displayedTransactions = safeTransactions.slice(0, maxItems)
 

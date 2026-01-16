@@ -5,15 +5,12 @@ import { OnboardingGuard } from "@/core/routing/OnboardingGuard"
 import { DashboardGuard } from "@/core/routing/DashboardGuard"
 import { ROUTES } from "@/core/constants/routes"
 
-// Auth pages
 import { LoginPage } from "@/modules/auth/pages/LoginPage"
 import { RegisterPage } from "@/modules/auth/pages/RegisterPage"
 import { OnboardingPage } from "@/modules/auth/pages/OnboardingPage"
 
-// Common pages
 import { NotFoundPage } from "@/modules/common/pages/NotFoundPage"
 
-// Admin pages
 import { DashboardPage } from "@/modules/dashboard/pages/DashboardPage"
 import { UsersPage } from "@/modules/users/pages/UsersPage"
 import { WalletsPage } from "@/modules/wallets/pages/WalletsPage"
@@ -23,30 +20,17 @@ import { AddCashPage } from "@/modules/payments/pages/AddCashPage"
 import { MoodReportsPage } from "@/modules/mood-reports/pages/MoodReportsPage"
 import { AccountPage } from "@/modules/account/pages/AccountPage"
 
-// Placeholder components for detail pages
 const UserDetailsPage = () => <div className="p-6">User Details</div>
 const WalletDetailsPage = () => <div className="p-6">Wallet Details</div>
 const TransactionDetailsPage = () => <div className="p-6">Transaction Details</div>
 const ForgotPasswordPage = () => <div className="p-6">Forgot Password</div>
 const ResetPasswordPage = () => <div className="p-6">Reset Password</div>
 
-// Get base URL from Vite's BASE_URL (automatically set from vite.config.js base option)
-// Vite sets BASE_URL from the 'base' config option
 const baseUrl = import.meta.env.BASE_URL || '/'
 
-// Remove trailing slash for basename (createBrowserRouter expects it without trailing slash)
-// If baseUrl is '/', basename should be undefined (no base path)
-// Otherwise, remove trailing slash if present
-// React Router v6 expects basename without trailing slash
 let basename: string | undefined = baseUrl === '/' ? undefined : (baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl)
 
-// Debug logging
 console.log('[Router] BASE_URL:', baseUrl, 'basename:', basename, 'current path:', window.location.pathname)
-
-// Create router with basename
-// React Router v6 automatically strips basename from location.pathname before matching routes
-// So if basename is '/ndis' and location is '/ndis/auth/login', router will match '/auth/login'
-// IMPORTANT: basename must be set on the root route, not on children
 export const router = createBrowserRouter(
     [
         {
@@ -57,7 +41,6 @@ export const router = createBrowserRouter(
                     index: true,
                     element: <Navigate to={ROUTES.AUTH.LOGIN} replace />,
                 },
-                // Auth routes (public)
                 {
                     path: 'auth',
                     children: [
@@ -79,7 +62,6 @@ export const router = createBrowserRouter(
                         },
                     ],
                 },
-                // Onboarding route (protected, but without AdminLayout)
                 {
                     element: (
                         <ProtectedRoute>
@@ -90,14 +72,12 @@ export const router = createBrowserRouter(
                     ),
                     path: 'onboarding',
                 },
-                // Protected routes - AdminLayout
                 {
                     element: <AdminLayout />,
                     children: [
                         {
                             element: <ProtectedRoute />,
                             children: [
-                                // Dashboard
                                 {
                                     path: 'dashboard',
                                     element: (
@@ -106,7 +86,6 @@ export const router = createBrowserRouter(
                                         </DashboardGuard>
                                     ),
                                 },
-                                // Users
                                 {
                                     path: 'users',
                                     children: [
@@ -120,7 +99,6 @@ export const router = createBrowserRouter(
                                         },
                                     ],
                                 },
-                                // Wallets
                                 {
                                     path: 'wallets',
                                     children: [
@@ -134,7 +112,6 @@ export const router = createBrowserRouter(
                                         },
                                     ],
                                 },
-                                // Transactions
                                 {
                                     path: 'transactions',
                                     children: [
@@ -148,7 +125,6 @@ export const router = createBrowserRouter(
                                         },
                                     ],
                                 },
-                                // Payments
                                 {
                                     path: 'payments',
                                     children: [
@@ -162,12 +138,10 @@ export const router = createBrowserRouter(
                                         },
                                     ],
                                 },
-                                // Mood Reports
                                 {
                                     path: 'mood-reports',
                                     element: <MoodReportsPage />,
                                 },
-                                // Account
                                 {
                                     path: 'account',
                                     element: <AccountPage />,

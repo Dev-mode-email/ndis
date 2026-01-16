@@ -53,7 +53,6 @@ export const LoginForm = () => {
 
       navigate(ROUTES.DASHBOARD.HOME)
     } catch (error) {
-      // Error handling is done in the hook
     }
   }
 

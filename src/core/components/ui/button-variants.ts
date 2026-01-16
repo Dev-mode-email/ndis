@@ -1,8 +1,5 @@
 import { cva } from "class-variance-authority";
 
-
-// Removed ADMIN_BUTTON_COLORS in favor of static Tailwind classes to avoid purge issues
-
 export const buttonVariants = cva(
     "inline-flex items-center justify-center whitespace-nowrap rounded-[10px] text-base font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 disabled:pointer-events-none disabled:opacity-50",
     {

@@ -9,12 +9,11 @@ interface Step {
 }
 
 interface ProgressSidebarProps {
-  currentStep: number // Step in sidebar (1-7)
+  currentStep: number
   userType?: string | null
 }
 
 export const ProgressSidebar = ({ currentStep }: ProgressSidebarProps) => {
-  // Steps for sidebar (always 6 steps for all user types)
   const steps: Step[] = [
     { number: 1, label: 'Add Organisation', completed: currentStep > 1, current: currentStep === 1 },
     { number: 2, label: 'Organisation', completed: currentStep > 2, current: currentStep === 2 },
@@ -24,7 +23,6 @@ export const ProgressSidebar = ({ currentStep }: ProgressSidebarProps) => {
     { number: 6, label: 'Order Card', completed: currentStep > 6, current: currentStep === 6 },
   ]
 
-  // Progress calculation
   const completedSteps = steps.filter(s => s.completed).length
   const progressPercentage = Math.round((completedSteps / steps.length) * 100)
 

@@ -10,36 +10,22 @@ interface Step {
 }
 
 interface ProgressSidebarProps {
-  currentStep: number // Step in sidebar (1-6 for onboarding)
-  isSuccessScreen?: boolean // Success screen flag (can be 4.5, 5.5, or 6.5)
+  currentStep: number
+  isSuccessScreen?: boolean
 }
 
-/**
- * Onboarding sidebar: exact layout matching Figma design (node-id=100:1027).
- */
 export const ProgressSidebar = ({ currentStep, isSuccessScreen = false }: ProgressSidebarProps) => {
   const location = useLocation()
 
-  // Determine success screen type by currentStep
-  // currentStep = 2 means company success screen (4.5 in RegisterPage)
-  // currentStep = 3 means subscription success screen (5.5 in RegisterPage)
-  // currentStep = 4 means participant success screen (6.5 in RegisterPage)
   const isCompanySuccess = isSuccessScreen && currentStep === 2
   const isSubscriptionSuccess = isSuccessScreen && currentStep === 3
   const isParticipantSuccess = isSuccessScreen && currentStep === 4
 
-  // On company success screen: step 2 completed, current step - 3
-  // On subscription success screen: step 3 completed, current step - 4
-  // On participant success screen: step 4 completed, current step - 5
   const effectiveStep = isParticipantSuccess ? 5 : isSubscriptionSuccess ? 4 : isCompanySuccess ? 3 : currentStep
   
-  // Step 1 completed if we're on step 1 or further
   const step1Completed = currentStep >= 1
-  // Step 2 completed on company success screen or if we've progressed further
   const step2Completed = isCompanySuccess || currentStep > 2
-  // Step 3 completed on subscription success screen or if we've progressed further
   const step3Completed = isSubscriptionSuccess || currentStep > 3
-  // Step 4 completed on participant success screen or if we've progressed further
   const step4Completed = isParticipantSuccess || currentStep > 4
 
   const steps: Step[] = [
@@ -51,20 +37,15 @@ export const ProgressSidebar = ({ currentStep, isSuccessScreen = false }: Progre
     { number: 6, label: '6: Order Card', completed: effectiveStep > 6, current: effectiveStep === 6 },
   ]
 
-  // Progress calculation according to design:
-  // On form screen (currentStep = 1): 30% (step 1 completed, step 2 current)
-  // On company success screen: 40% (steps 1 and 2 completed)
-  // On subscription success screen: 60% (steps 1, 2 and 3 completed)
-  // On participant success screen: 67% (steps 1, 2, 3 and 4 completed, 4 out of 6 = 67%)
   let progressPercentage: number
   if (isParticipantSuccess) {
-    progressPercentage = 67 // Steps 1, 2, 3 and 4 completed
+    progressPercentage = 67
   } else if (isSubscriptionSuccess) {
-    progressPercentage = 60 // Steps 1, 2 and 3 completed
+    progressPercentage = 60
   } else if (isCompanySuccess) {
-    progressPercentage = 40 // Steps 1 and 2 completed
+    progressPercentage = 40
   } else if (currentStep === 1) {
-    progressPercentage = 30 // Step 1 completed, step 2 current
+    progressPercentage = 30
   } else {
     const completedSteps = steps.filter((s) => s.completed).length
     progressPercentage = Math.round((completedSteps / steps.length) * 100)

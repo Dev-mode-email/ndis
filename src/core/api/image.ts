@@ -15,15 +15,9 @@ export interface GetSignedUrlParams {
 }
 
 export const imageApi = {
-    /**
-     * Get all images
-     */
     getAll: () =>
         axiosInstance.get(API_ENDPOINTS.IMAGE.LIST),
 
-    /**
-     * Upload an image
-     */
     upload: (data: UploadImageDto) => {
         const formData = new FormData()
         formData.append('file', data.file)
@@ -37,15 +31,9 @@ export const imageApi = {
         })
     },
 
-    /**
-     * Get image by id
-     */
     getById: (id: string) =>
         axiosInstance.get(API_ENDPOINTS.IMAGE.GET(id)),
 
-    /**
-     * Update image metadata
-     */
     update: (id: string, data: UpdateImageDto) => {
         const formData = new FormData()
         if (data.file) {
@@ -58,15 +46,9 @@ export const imageApi = {
         })
     },
 
-    /**
-     * Delete an image
-     */
     delete: (id: string) =>
         axiosInstance.delete(API_ENDPOINTS.IMAGE.DELETE(id)),
 
-    /**
-     * Get signed URL for image
-     */
     getSignedUrl: (id: string, params: GetSignedUrlParams) =>
         axiosInstance.get(API_ENDPOINTS.IMAGE.GET_SIGNED_URL(id), { params }),
 }
